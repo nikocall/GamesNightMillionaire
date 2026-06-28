@@ -1,0 +1,110 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Which singer is known as the "King of Pop"?
+Michael Jackson
+Elvis Presley
+Prince
+Justin Timberlake
+
+In The Office (US), what company does Michael Scott work for?
+Dunder Mifflin
+Staples
+PaperCo
+Office Depot
+
+Which actress played Hermione Granger in the Harry Potter films?
+Emma Watson
+Keira Knightley
+Daisy Ridley
+Millie Bobby Brown
+
+Which game features the locations Tilted Towers and Pleasant Park?
+Fortnite
+Apex Legends
+PUBG
+Valorant
+
+Who voices Buzz Lightyear in the original Toy Story films?
+Tim Allen
+Tom Hanks
+Billy Crystal
+Robin Williams
+
+Which TV series follows Walter White, a chemistry teacher turned drug manufacturer?
+Breaking Bad
+Ozark
+Narcos
+Better Call Saul
+
+Which band released the hit song "Bohemian Rhapsody"?
+Queen
+The Beatles
+Pink Floyd
+Led Zeppelin
+
+Which streaming platform is home to The Mandalorian?
+Disney+
+Netflix
+Prime Video
+Apple TV+
+
+In Super Mario games, what is Princess Peach's kingdom called?
+Mushroom Kingdom
+Flower Kingdom
+Star Kingdom
+Rainbow Kingdom
+
+Which artist released the song "Blinding Lights"?
+The Weeknd
+Drake
+Bruno Mars
+Post Malone
+
+Which actor plays Captain Jack Sparrow in the Pirates of the Caribbean films?
+Johnny Depp
+Orlando Bloom
+Keanu Reeves
+Tom Cruise
+
+What is the name of the coffee shop in Friends?
+Central Perk
+Coffee House
+Bean Scene
+The Daily Grind
+
+Which Pokémon is known as Pokémon #025?
+Pikachu
+Eevee
+Bulbasaur
+Charmander
+
+Which social media app is famous for short-form vertical videos?
+TikTok
+Facebook
+Snapchat
+X
+
+In The Lord of the Rings, who carries the One Ring to Mordor?
+Frodo Baggins
+Samwise Gamgee
+Aragorn
+Bilbo Baggins
+

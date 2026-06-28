@@ -1,0 +1,109 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Who dies first in a horror movie?
+Paris
+London
+Berlin
+Madrid
+
+Who has the most rizz?
+6
+4
+8
+5
+
+Who is most likely to be blunt to someone’s face?
+H2O
+CO2
+NaCl
+O2
+
+Who’s most likely to get arrested?
+Leonardo da Vinci
+Pablo Picasso
+Michelangelo
+Vincent van Gogh
+
+Who’s most likely to help out in a tight spot?
+Jupiter
+Saturn
+Neptune
+Earth
+
+Who’s most likely to be on the Autism spectrum?
+1912
+1905
+1920
+1898
+
+Who is most likely to start arguing with a GPS?
+12
+14
+11
+16
+
+Who’s always late?
+William Shakespeare
+Charles Dickens
+Jane Austen
+Mark Twain
+
+Who is most likely to disappear from the chat for months?
+Cheetah
+Lion
+Greyhound
+Horse
+
+Who would rather stay in and watch Netflix on a Friday night? 
+206
+212
+198
+220
+
+Who is most likely to say something stupid on a first date?
+Tokyo
+Beijing
+Seoul
+Bangkok
+
+Who’s the funniest?
+Hydrogen
+Helium
+Lithium
+Oxygen
+
+Who’s most likely to be admitted into a psych ward?
+Nile
+Amazon
+Yangtze
+Mississippi
+
+Who would you trust with your children?
+India
+China
+Persia
+Greece
+
+Who would you NOT trust with your children?
+Diamond
+Quartz
+Titanium
+Obsidian

@@ -1,0 +1,109 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+What is the capital of France?
+Paris
+London
+Berlin
+Madrid
+
+How many sides does a hexagon have?
+6
+4
+8
+5
+
+What is the chemical symbol for water?
+H2O
+CO2
+NaCl
+O2
+
+Who painted the Mona Lisa?
+Leonardo da Vinci
+Pablo Picasso
+Michelangelo
+Vincent van Gogh
+
+What is the largest planet in our solar system?
+Jupiter
+Saturn
+Neptune
+Earth
+
+In what year did the Titanic sink?
+1912
+1905
+1920
+1898
+
+What is the square root of 144?
+12
+14
+11
+16
+
+Who wrote Romeo and Juliet?
+William Shakespeare
+Charles Dickens
+Jane Austen
+Mark Twain
+
+What is the fastest land animal?
+Cheetah
+Lion
+Greyhound
+Horse
+
+How many bones are in the adult human body?
+206
+212
+198
+220
+
+What is the capital of Japan?
+Tokyo
+Beijing
+Seoul
+Bangkok
+
+Which element has the atomic number 1?
+Hydrogen
+Helium
+Lithium
+Oxygen
+
+What is the longest river in the world?
+Nile
+Amazon
+Yangtze
+Mississippi
+
+In which country was chess invented?
+India
+China
+Persia
+Greece
+
+What is the hardest natural substance on Earth?
+Diamond
+Quartz
+Titanium
+Obsidian

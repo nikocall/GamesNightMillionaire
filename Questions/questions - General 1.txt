@@ -1,0 +1,110 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+What is the tallest building in the world?
+Burj Khalifa
+Shanghai Tower
+One World Trade Center
+Taipei 101
+
+Which country has the largest population in the world (2026)?
+India
+China
+United States
+Indonesia
+
+What is the capital of Canada?
+Ottawa
+Toronto
+Vancouver
+Montreal
+
+Which planet has the most moons?
+Saturn
+Jupiter
+Mars
+Neptune
+
+How many time zones does mainland Russia span?
+11
+9
+8
+13
+
+Which ocean is the deepest?
+Pacific Ocean
+Atlantic Ocean
+Indian Ocean
+Arctic Ocean
+
+What is the world's longest river?
+Nile
+Amazon
+Yangtze
+Mississippi
+
+Which country is home to Mount Fuji?
+Japan
+South Korea
+China
+Taiwan
+
+Which element has the chemical symbol Ag?
+Silver
+Gold
+Argon
+Aluminium
+
+Who painted the Mona Lisa?
+Leonardo da Vinci
+Michelangelo
+Vincent van Gogh
+Pablo Picasso
+
+What is the currency of Switzerland?
+Swiss Franc
+Euro
+Swiss Dollar
+Krone
+
+Which desert is the largest hot desert in the world?
+Sahara Desert
+Arabian Desert
+Gobi Desert
+Kalahari Desert
+
+What is the largest island in the Mediterranean Sea?
+Sicily
+Sardinia
+Cyprus
+Crete
+
+How many players are on the court for one basketball team during play?
+5
+6
+7
+4
+
+Which gas makes up around 78% of Earth's atmosphere?
+Nitrogen
+Oxygen
+Carbon Dioxide
+Hydrogen
+

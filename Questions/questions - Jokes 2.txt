@@ -1,0 +1,112 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Why don’t you ever trust stairs?
+Because they’re always up to something
+They’re too old
+They keep stepping out
+They’re always running away
+
+What did one wall say to the other wall?
+I’ll meet you at the corner
+You’re ugly
+Stop leaning on me
+I’m bored of you
+
+Why did the toilet paper roll downhill?
+To get to the bottom
+It wanted freedom
+It was pushed
+It was late for work
+
+What do you call a lazy kangaroo?
+A pouch potato
+A slow jumper
+A sleeproo
+A couch roo
+
+Why did the coffee file a police report?
+It got mugged
+It was too strong
+It was stolen from work
+It was bitter
+
+What do you call a fake noodle?
+An impasta
+A pasta thief
+A cheap spaghetti
+A sauce experiment
+
+Why did the skeleton go to the party alone?
+He had no body to go with
+He was too scary
+He forgot to invite people
+He doesn’t like music
+
+What do you call a cow with no legs?
+Ground beef
+A sad cow
+A meatball
+A flat steak
+
+Why did the bicycle fall over?
+It was two tired
+It was broken
+It lost its chain
+It got pushed
+
+Why can’t your hand be 12 inches long?
+Because then it would be a foot
+It would be too big
+It would be illegal
+It would fall off
+
+Why did the tomato turn red?
+It saw the salad dressing
+It got embarrassed
+It was cooked
+It was angry
+
+What do you call a fish wearing a bowtie?
+Sofishticated
+A fancy swimmer
+A stylish salmon
+A tuxedo fish
+
+Why did the math teacher break up with the calculator?
+It couldn’t count on it
+It was too expensive
+It gave bad answers
+It was too smart
+
+What did the grape do when it got stepped on?
+Nothing, it just let out a little wine
+It exploded
+It called the police
+It rolled away
+
+Why did the chicken join a band?
+Because it had the drumsticks
+It wanted fame
+It was bored
+It liked noise
+
+
+

@@ -1,0 +1,111 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+What do you call a bear with no teeth?
+A gummy bear
+A sleepy bear
+A polar snack
+A chocolate bear
+
+What is Batman’s real job?
+Billionaire
+Plumber
+Chef
+Taxi driver
+
+Why did the computer go to therapy?
+It had too many issues
+It was hacked
+It forgot its password
+It lost WiFi
+
+What do you call fake spaghetti?
+An impasta
+A noodle trick
+A pasta lie
+A fake bake
+
+Why don’t skeletons fight each other?
+They don’t have the guts
+They forget how
+They are too lazy
+They break easily
+
+What do you call cheese that isn’t yours?
+Nacho cheese
+Lost cheese
+Borrowed cheese
+Sneaky cheddar
+
+Why did the math book look sad?
+It had too many problems
+It failed a test
+It lost its calculator
+It was divided
+
+What do you call a sleeping bull?
+A bulldozer
+A lazy cow
+A nap bull
+A snoozer
+
+Why did the scarecrow win an award?
+He was outstanding in his field
+He scared everyone
+He worked overtime
+He never moved
+
+What do you call a fish with no eyes?
+Fsh
+Blind tuna
+Silent swimmer
+No-see fish
+
+Why did the student eat his homework?
+Because the teacher said it was a piece of cake
+He was hungry
+He forgot lunch
+It looked tasty
+
+What do you call a belt made of watches?
+A waist of time
+A ticking belt
+A fashion error
+A clock strap
+
+Why can’t your nose be 12 inches long?
+Because then it would be a foot
+It would fall off
+It would get tired
+It would be a ruler
+
+What do you call a factory that makes okay products?
+A satisfactory
+A maybe factory
+A good enough plant
+A “meh” factory
+
+Why did the golfer bring two pairs of pants?
+In case he got a hole in one
+It was cold
+He lost one
+He wanted fashion options
+
+

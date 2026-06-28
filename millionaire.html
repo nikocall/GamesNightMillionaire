@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Wants to Be a Millionaire?</title>
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║                     LOADING QUESTIONS                            ║
+║                                                                  ║
+║  The game loads questions from  questions.txt  (same folder).    ║
+║  On the start screen click "Load questions.txt" and select it.   ║
+║                                                                  ║
+║  questions.txt FORMAT – one block per question:                  ║
+║    Line 1 : The question                                         ║
+║    Line 2 : The CORRECT answer                                   ║
+║    Line 3 : Wrong answer                                         ║
+║    Line 4 : Wrong answer                                         ║
+║    Line 5 : Wrong answer                                         ║
+║    (blank line between questions)                                ║
+║    Lines starting with # are comments and are ignored.           ║
+║                                                                  ║
+║  Built-in fallback questions are also included so the game       ║
+║  works immediately even without a txt file.                      ║
+╚══════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════════════════════════════╗
+║                        AUDIO FILES                               ║
+║                                                                  ║
+║  Place your audio files in the  audio/  folder next to this      ║
+║  HTML file, then rename them to match these exact filenames:     ║
+║                                                                  ║
+║    audio/background.mp3   – looping background music            ║
+║    audio/correct.mp3      – played when a correct answer is      ║
+║                             confirmed                            ║
+║    audio/wrong.mp3        – played when a wrong answer is        ║
+║                             confirmed                            ║
+║    audio/win.mp3          – played when the player wins the      ║
+║                             top prize ($1,000,000)               ║
+║                                                                  ║
+║  Supported formats: .mp3  .ogg  .wav  (mp3 works in all modern  ║
+║  browsers). If you want to use a different filename, just update ║
+║  the paths in the AUDIO CONFIGURATION section below.            ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<script>
+/* ================================================================
+   EDIT YOUR QUESTIONS HERE
+   ================================================================ */
+const QUESTIONS = [
+  {
+    q: "What is the capital of France?",
+    correct: "Paris",
+    wrong: ["London", "Berlin", "Madrid"]
+  },
+  {
+    q: "How many sides does a hexagon have?",
+    correct: "6",
+    wrong: ["4", "8", "5"]
+  },
+  {
+    q: "What is the chemical symbol for water?",
+    correct: "H₂O",
+    wrong: ["CO₂", "NaCl", "O₂"]
+  },
+  {
+    q: "Who painted the Mona Lisa?",
+    correct: "Leonardo da Vinci",
+    wrong: ["Pablo Picasso", "Michelangelo", "Vincent van Gogh"]
+  },
+  {
+    q: "What is the largest planet in our solar system?",
+    correct: "Jupiter",
+    wrong: ["Saturn", "Neptune", "Earth"]
+  },
+  {
+    q: "In what year did the Titanic sink?",
+    correct: "1912",
+    wrong: ["1905", "1920", "1898"]
+  },
+  {
+    q: "What is the square root of 144?",
+    correct: "12",
+    wrong: ["14", "11", "16"]
+  },
+  {
+    q: "Who wrote \"Romeo and Juliet\"?",
+    correct: "William Shakespeare",
+    wrong: ["Charles Dickens", "Jane Austen", "Mark Twain"]
+  },
+  {
+    q: "What is the fastest land animal?",
+    correct: "Cheetah",
+    wrong: ["Lion", "Greyhound", "Horse"]
+  },
+  {
+    q: "How many bones are in the adult human body?",
+    correct: "206",
+    wrong: ["212", "198", "220"]
+  },
+  {
+    q: "What is the capital of Japan?",
+    correct: "Tokyo",
+    wrong: ["Beijing", "Seoul", "Bangkok"]
+  },
+  {
+    q: "Which element has the atomic number 1?",
+    correct: "Hydrogen",
+    wrong: ["Helium", "Lithium", "Oxygen"]
+  },
+  {
+    q: "What is the longest river in the world?",
+    correct: "Nile",
+    wrong: ["Amazon", "Yangtze", "Mississippi"]
+  },
+  {
+    q: "In which country was chess invented?",
+    correct: "India",
+    wrong: ["China", "Persia", "Greece"]
+  },
+  {
+    q: "What is the hardest natural substance on Earth?",
+    correct: "Diamond",
+    wrong: ["Quartz", "Titanium", "Obsidian"]
+  }
+];
+/* ================================================================
+   END OF QUESTION EDITING AREA
+   ================================================================ */
+
+
+/* ================================================================
+   AUDIO CONFIGURATION
+   Change the filenames here if yours are named differently.
+   ================================================================ */
+const AUDIO = {
+  background: 'audio/background.mp3',
+  correct:    'audio/correct.mp3',
+  wrong:      'audio/wrong.mp3',
+  win:        'audio/win.mp3'
+};
+/* ================================================================
+   END OF AUDIO CONFIGURATION
+   ================================================================ */
+</script>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: url('images/BackgroundImg.jpg') center center / cover no-repeat fixed;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Dark overlay so UI stays readable over any background image */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 5, 16, 0.62);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .screen { position: relative; z-index: 1; }
+
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; }
+
+  /* ── START SCREEN ── */
+  #startScreen {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+    gap: 28px;
+    padding: 40px;
+  }
+
+  .logo {
+    font-size: 2.8rem;
+    font-weight: bold;
+    background: linear-gradient(180deg, #ffffff 0%, #f0c040 50%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 1rem;
+    color: #f0c040;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .start-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(240,192,64,0.25);
+    border-radius: 20px;
+    padding: 36px 48px;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .start-card h2 { color: #f0c040; margin-bottom: 10px; font-size: 1.15rem; }
+  .start-card p  { color: #99aacc; font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
+
+  .file-label {
+    display: inline-block;
+    background: linear-gradient(180deg, #f0c040, #c07000);
+    color: #000;
+    font-weight: bold;
+    padding: 13px 36px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: opacity 0.2s;
+  }
+  .file-label:hover { opacity: 0.85; }
+
+  .or-divider { color: #445566; margin: 14px 0; font-size: 0.85rem; }
+
+  .demo-btn {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #ccd;
+    padding: 10px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: background 0.2s;
+  }
+  .demo-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+  #loadStatus { font-size: 0.85rem; margin-top: 12px; min-height: 20px; color: #5c8; }
+
+  .start-btn {
+    background: linear-gradient(180deg, #f0c040, #c07000);
+    color: #000;
+    font-weight: bold;
+    padding: 14px 48px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .start-btn:hover { opacity: 0.85; }
+
+  .q-count { color: #5c8; font-size: 0.85rem; margin-top: 16px; }
+
+  /* ── GAME SCREEN ── */
+  #gameScreen { flex-direction: row; align-items: stretch; }
+
+  .game-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px 20px 40px;
+  }
+
+  /* Lifelines */
+  .lifelines {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .lifeline-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #3a6090, #0d2a4a);
+    border: 3px solid #4a90d0;
+    color: #fff;
+    font-size: 0.63rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    transition: all 0.2s;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .lifeline-btn .ll-icon { font-size: 1.4rem; }
+  .lifeline-btn:hover:not(.used) {
+    border-color: #f0c040;
+    box-shadow: 0 0 16px rgba(240,192,64,0.4);
+  }
+  .lifeline-btn.used { opacity: 0.22; cursor: default; filter: grayscale(1); }
+
+  /* Question */
+  .question-container {
+    width: 100%;
+    max-width: 720px;
+    margin-bottom: 18px;
+  }
+
+  .q-number {
+    font-size: 0.78rem;
+    color: #f0c040;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .question-box {
+    background: linear-gradient(180deg, rgba(10,40,80,0.95), rgba(5,20,50,0.98));
+    border: 2px solid #2a6ab0;
+    border-radius: 50px;
+    padding: 22px 36px;
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: bold;
+    line-height: 1.5;
+    box-shadow: 0 0 30px rgba(42,106,176,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .question-box::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 48px;
+    border: 1px solid rgba(100,160,255,0.18);
+    pointer-events: none;
+  }
+
+  /* Answers */
+  .answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .answer-btn {
+    background: linear-gradient(180deg, rgba(10,40,90,0.9), rgba(5,18,50,0.95));
+    border: 2px solid #2a6ab0;
+    border-radius: 50px;
+    padding: 14px 28px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 10px rgba(42,106,176,0.2);
+    position: relative;
+  }
+  .answer-btn::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: 48px;
+    border: 1px solid rgba(100,160,255,0.12);
+    pointer-events: none;
+  }
+
+  .answer-letter {
+    background: linear-gradient(180deg, #f0c040, #c07000);
+    color: #000;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem; font-weight: bold; flex-shrink: 0;
+  }
+
+  .answer-btn:hover:not(:disabled) {
+    border-color: #f0c040;
+    background: linear-gradient(180deg, rgba(40,80,150,0.95), rgba(20,50,100,0.98));
+    box-shadow: 0 0 20px rgba(240,192,64,0.35);
+  }
+  .answer-btn.selected {
+    border-color: #ff8c00;
+    background: linear-gradient(180deg, rgba(80,60,0,0.95), rgba(50,30,0,0.98));
+    box-shadow: 0 0 20px rgba(255,140,0,0.5);
+  }
+  .answer-btn.correct {
+    border-color: #00d44a;
+    background: linear-gradient(180deg, rgba(0,80,30,0.95), rgba(0,50,15,0.98));
+    box-shadow: 0 0 20px rgba(0,212,74,0.5);
+    animation: pulse 0.6s ease;
+  }
+  .answer-btn.wrong {
+    border-color: #d40000;
+    background: linear-gradient(180deg, rgba(80,0,0,0.95), rgba(50,0,0,0.98));
+    box-shadow: 0 0 20px rgba(212,0,0,0.5);
+  }
+  .answer-btn.hidden { opacity: 0.16; pointer-events: none; }
+  .answer-btn:disabled { cursor: default; }
+
+  @keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.02); }
+  }
+
+  /* Walk away */
+  .walk-btn {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #99a;
+    padding: 8px 28px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .walk-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* Next question button */
+  .next-btn {
+    margin-top: 20px;
+    background: linear-gradient(180deg, #f0c040, #c07000);
+    color: #000;
+    font-weight: bold;
+    padding: 12px 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: none;
+    transition: opacity 0.2s;
+    display: none;
+    animation: fadeInUp 0.4s ease;
+  }
+  .next-btn:hover { opacity: 0.85; }
+  .next-btn.visible { display: inline-block; }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Prize ladder */
+  .prize-ladder {
+    width: 200px;
+    background: rgba(0,0,0,0.4);
+    border-left: 1px solid rgba(42,106,176,0.3);
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow-y: auto;
+    justify-content: center;
+  }
+
+  .prize-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    color: #7a9abb;
+    transition: all 0.3s;
+  }
+  .prize-item.milestone { color: #f0c040; font-weight: bold; }
+  .prize-item.current   { background: linear-gradient(90deg,rgba(240,192,64,0.2),transparent); color:#fff; font-weight:bold; border-left:3px solid #f0c040; }
+  .prize-item.reached   { color: #55cc55; }
+  .prize-num { width: 20px; text-align: right; font-size: 0.72rem; opacity: 0.55; }
+
+  /* ── END SCREEN ── */
+  #endScreen {
+    flex-direction: column; align-items: center;
+    justify-content: center; text-align: center;
+    gap: 22px; padding: 40px;
+  }
+
+  .end-title { font-size: 2.2rem; font-weight: bold; color: #f0c040; }
+
+  .end-prize {
+    font-size: 3.5rem; font-weight: bold;
+    background: linear-gradient(180deg, #fff 0%, #f0c040 50%, #ff8c00 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .end-msg { color: #aabbcc; font-size: 1.05rem; max-width: 400px; }
+
+  .play-again-btn {
+    background: linear-gradient(180deg, #f0c040, #c07000);
+    color: #000; font-weight: bold;
+    padding: 14px 44px; border-radius: 30px;
+    cursor: pointer; font-size: 1rem; border: none;
+    transition: opacity 0.2s; margin-top: 8px;
+  }
+  .play-again-btn:hover { opacity: 0.85; }
+
+  /* ── OVERLAYS ── */
+  .overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.72);
+    display: none; align-items: center;
+    justify-content: center; z-index: 100;
+  }
+  .overlay.show { display: flex; }
+
+  .overlay-box {
+    background: linear-gradient(180deg, #0a1628, #000c20);
+    border: 2px solid #2a6ab0;
+    border-radius: 20px;
+    padding: 32px 40px;
+    text-align: center;
+    min-width: 340px;
+    max-width: 440px;
+  }
+  .overlay-box h3 { color: #f0c040; margin-bottom: 18px; font-size: 1.15rem; }
+  .overlay-box p  { color: #ccd; line-height: 1.75; font-size: 0.95rem; }
+
+  .close-btn {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; padding: 8px 26px;
+    border-radius: 20px; cursor: pointer;
+    font-size: 0.88rem; transition: background 0.2s;
+  }
+  .close-btn:hover { background: rgba(255,255,255,0.18); }
+
+  /* Audience bars */
+  .bars {
+    display: flex; align-items: flex-end;
+    justify-content: center; gap: 22px;
+    height: 140px; margin-bottom: 6px;
+  }
+  .bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .bar {
+    width: 52px;
+    background: linear-gradient(180deg, #4acfff, #0677aa);
+    border-radius: 4px 4px 0 0;
+    transition: height 1s ease;
+    min-height: 4px;
+  }
+  .bar-pct { font-size: 0.82rem; color: #aaeeff; font-weight: bold; }
+  .bar-lbl { font-size: 0.78rem; color: #7a9abb; }
+
+  /* Mute button */
+  .mute-btn {
+    position: fixed;
+    top: 14px; right: 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    transition: background 0.2s;
+  }
+  .mute-btn:hover { background: rgba(255,255,255,0.18); }
+</style>
+</head>
+<body>
+
+<!-- Mute toggle (always visible) -->
+<button class="mute-btn" id="muteBtn" onclick="toggleMute()" title="Toggle sound">🔊</button>
+
+<!-- ══ HIDDEN AUDIO ELEMENTS ══ -->
+<audio id="audioBackground" src="audio/background.mp3" loop></audio>
+<audio id="audioCorrect"    src="audio/correct.mp3"></audio>
+<audio id="audioWrong"      src="audio/wrong.mp3"></audio>
+<audio id="audioWin"        src="audio/win.mp3"></audio>
+
+<!-- ══ START SCREEN ══ -->
+<div id="startScreen" class="screen active">
+  <div>
+    <img src="images/Logo.png" alt="Who Wants to Be a Millionaire?" style="max-width:380px; width:90%; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7));">
+  </div>
+  <div class="start-card">
+    <h2>Load your question pack</h2>
+    <p>
+      Select your <strong>questions.txt</strong> file to play with custom questions.<br>
+      Each block of 5 lines = one question: the question, the correct answer, then 3 wrong answers.
+      Separate blocks with a blank line.
+    </p>
+    <label class="file-label" for="fileInput">📂 Load questions.txt</label>
+    <input type="file" id="fileInput" accept=".txt" style="display:none">
+    <div class="or-divider">— or —</div>
+    <button class="demo-btn" onclick="useBuiltIn()">Play with built-in questions</button>
+    <div id="loadStatus"></div>
+  </div>
+</div>
+
+<!-- ══ GAME SCREEN ══ -->
+<div id="gameScreen" class="screen">
+  <div class="game-main">
+    <div class="lifelines">
+      <button class="lifeline-btn" id="ll5050"     onclick="use5050()">
+        <span class="ll-icon">½</span>50:50
+      </button>
+      <button class="lifeline-btn" id="llPhone"    onclick="usePhone()">
+        <span class="ll-icon">📞</span>Phone
+      </button>
+      <button class="lifeline-btn" id="llAudience" onclick="useAudience()">
+        <span class="ll-icon">👥</span>Audience
+      </button>
+    </div>
+
+    <div class="question-container">
+      <div class="q-number"     id="qNumber"></div>
+      <div class="question-box" id="questionText"></div>
+    </div>
+
+    <div class="answers-grid" id="answersGrid"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question ▶</button>
+    <button class="walk-btn" id="walkBtn" onclick="walkAway()">Walk Away</button>
+  </div>
+
+  <div class="prize-ladder" id="prizeLadder"></div>
+</div>
+
+<!-- ══ END SCREEN ══ -->
+<div id="endScreen" class="screen">
+  <img src="images/Logo.png" alt="Who Wants to Be a Millionaire?" style="max-width:300px; width:80%; filter: drop-shadow(0 4px 24px rgba(0,0,0,0.7)); margin-bottom:8px;">
+  <div class="end-title" id="endTitle"></div>
+  <div class="end-prize"  id="endPrize"></div>
+  <div class="end-msg"    id="endMsg"></div>
+  <button class="play-again-btn" onclick="resetGame()">Play Again</button>
+</div>
+
+<!-- Audience overlay -->
+<div class="overlay" id="audienceOverlay">
+  <div class="overlay-box">
+    <h3>Ask the Audience</h3>
+    <div class="bars" id="audienceBars"></div>
+    <button class="close-btn" onclick="closeOverlay('audienceOverlay')">Close</button>
+  </div>
+</div>
+
+<!-- Phone overlay -->
+<div class="overlay" id="phoneOverlay">
+  <div class="overlay-box">
+    <h3>Phone a Friend</h3>
+    <p id="phoneText"></p>
+    <button class="close-btn" onclick="closeOverlay('phoneOverlay')">Close</button>
+  </div>
+</div>
+
+<script>
+/* ── QUESTION LOADER ── */
+let loadedQuestions = null;   // null = nothing loaded yet
+
+function parseQuestions(text) {
+  const lines = text.split('\n').map(l => l.trim());
+  const result = [];
+  let block = [];
+
+  for (const line of lines) {
+    if (line.startsWith('#')) continue;
+    if (line === '') {
+      if (block.length >= 5) result.push({ q: block[0], correct: block[1], wrong: [block[2], block[3], block[4]] });
+      block = [];
+    } else {
+      block.push(line);
+    }
+  }
+  if (block.length >= 5) result.push({ q: block[0], correct: block[1], wrong: [block[2], block[3], block[4]] });
+  return result;
+}
+
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const qs = parseQuestions(ev.target.result);
+    if (qs.length < 1) {
+      document.getElementById('loadStatus').style.color = '#f88';
+      document.getElementById('loadStatus').textContent = '⚠ No valid questions found — check the file format.';
+      return;
+    }
+    loadedQuestions = qs;
+    document.getElementById('loadStatus').style.color = '#5c8';
+    document.getElementById('loadStatus').textContent = `✓ Loaded ${qs.length} question${qs.length !== 1 ? 's' : ''} — ready!`;
+    setTimeout(startGame, 900);
+  };
+  reader.readAsText(file);
+});
+
+function useBuiltIn() {
+  loadedQuestions = QUESTIONS;
+  startGame();
+}
+
+/* ── PRIZE TABLE ── */
+const PRIZES = [
+  { amount: '$100',       milestone: false },
+  { amount: '$200',       milestone: false },
+  { amount: '$300',       milestone: false },
+  { amount: '$500',       milestone: false },
+  { amount: '$1,000',     milestone: true  },
+  { amount: '$2,000',     milestone: false },
+  { amount: '$4,000',     milestone: false },
+  { amount: '$8,000',     milestone: false },
+  { amount: '$16,000',    milestone: false },
+  { amount: '$32,000',    milestone: true  },
+  { amount: '$64,000',    milestone: false },
+  { amount: '$125,000',   milestone: false },
+  { amount: '$250,000',   milestone: false },
+  { amount: '$500,000',   milestone: false },
+  { amount: '$1,000,000', milestone: true  },
+];
+
+const MILESTONES = [4, 9];
+
+/* ── AUDIO ── */
+const sndBackground = document.getElementById('audioBackground');
+const sndCorrect    = document.getElementById('audioCorrect');
+const sndWrong      = document.getElementById('audioWrong');
+const sndWin        = document.getElementById('audioWin');
+
+let muted = false;
+
+function playSound(el) {
+  if (muted) return;
+  el.currentTime = 0;
+  el.play().catch(() => {});   // ignore autoplay policy errors silently
+}
+
+function stopSound(el) {
+  el.pause();
+  el.currentTime = 0;
+}
+
+function startBackground() {
+  if (muted) return;
+  sndBackground.volume = 0.35;
+  sndBackground.play().catch(() => {});
+}
+
+function stopBackground() {
+  sndBackground.pause();
+  sndBackground.currentTime = 0;
+}
+
+function toggleMute() {
+  muted = !muted;
+  document.getElementById('muteBtn').textContent = muted ? '🔇' : '🔊';
+  if (muted) {
+    sndBackground.pause();
+  } else {
+    // Only restart background if we're on the game screen
+    if (document.getElementById('gameScreen').classList.contains('active')) {
+      sndBackground.play().catch(() => {});
+    }
+  }
+}
+
+/* ── STATE ── */
+let gameQuestions  = [];
+let currentQ       = 0;
+let answered       = false;
+let selectedIndex  = null;
+let removedIndices = [];
+let lifelines      = {};
+
+/* ── HELPERS ── */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function closeOverlay(id) {
+  document.getElementById(id).classList.remove('show');
+}
+
+/* ── START GAME ── */
+function startGame() {
+  const pool    = loadedQuestions || QUESTIONS;
+  gameQuestions = shuffle(pool).slice(0, Math.min(15, pool.length));
+  currentQ       = 0;
+  answered       = false;
+  selectedIndex  = null;
+  removedIndices = [];
+  lifelines      = { '5050': false, phone: false, audience: false };
+
+  ['ll5050','llPhone','llAudience'].forEach(id =>
+    document.getElementById(id).classList.remove('used')
+  );
+
+  buildLadder();
+  showScreen('gameScreen');
+  startBackground();
+  renderQuestion();
+}
+
+/* ── PRIZE LADDER ── */
+function buildLadder() {
+  const ladder = document.getElementById('prizeLadder');
+  ladder.innerHTML = '';
+  const total = gameQuestions.length;
+  for (let i = total - 1; i >= 0; i--) {
+    const div = document.createElement('div');
+    div.id = `prize-${i}`;
+    div.className = 'prize-item' + (PRIZES[i].milestone ? ' milestone' : '');
+    div.innerHTML = `<span class="prize-num">${i + 1}</span>${PRIZES[i].amount}`;
+    ladder.appendChild(div);
+  }
+  updateLadder();
+}
+
+function updateLadder() {
+  for (let i = 0; i < gameQuestions.length; i++) {
+    const el = document.getElementById(`prize-${i}`);
+    if (!el) continue;
+    el.classList.remove('current', 'reached');
+    if (i < currentQ) el.classList.add('reached');
+    if (i === currentQ) el.classList.add('current');
+  }
+}
+
+/* ── RENDER QUESTION ── */
+function renderQuestion() {
+  answered       = false;
+  selectedIndex  = null;
+  removedIndices = [];
+
+  const qData = gameQuestions[currentQ];
+  document.getElementById('qNumber').textContent =
+    `Question ${currentQ + 1} of ${gameQuestions.length}`;
+  document.getElementById('questionText').textContent = qData.q;
+
+  const shuffled     = shuffle([qData.correct, ...qData.wrong]);
+  const correctIndex = shuffled.indexOf(qData.correct);
+
+  window._answers      = shuffled;
+  window._correctIndex = correctIndex;
+
+  const grid    = document.getElementById('answersGrid');
+  const letters = ['A','B','C','D'];
+  grid.innerHTML = '';
+
+  shuffled.forEach((ans, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.id = `ans-${i}`;
+    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span><span>${ans}</span>`;
+    btn.onclick = () => selectAnswer(i);
+    grid.appendChild(btn);
+  });
+
+  updateLadder();
+}
+
+/* ── ANSWER FLOW ── */
+function selectAnswer(index) {
+  if (answered || removedIndices.includes(index)) return;
+
+  if (selectedIndex === index) {
+    confirmAnswer(index);
+    return;
+  }
+
+  if (selectedIndex !== null)
+    document.getElementById(`ans-${selectedIndex}`).classList.remove('selected');
+
+  selectedIndex = index;
+  document.getElementById(`ans-${index}`).classList.add('selected');
+}
+
+function confirmAnswer(index) {
+  answered = true;
+  document.querySelectorAll('.answer-btn').forEach(b => b.disabled = true);
+
+  const correct = window._correctIndex;
+
+  setTimeout(() => {
+    if (index !== correct) {
+      document.getElementById(`ans-${index}`).classList.remove('selected');
+      document.getElementById(`ans-${index}`).classList.add('wrong');
+    }
+    document.getElementById(`ans-${correct}`).classList.remove('selected');
+    document.getElementById(`ans-${correct}`).classList.add('correct');
+
+    // Play correct / wrong sound
+    if (index === correct) {
+      playSound(sndCorrect);
+      // Show Next Question button after a short pause
+      setTimeout(() => {
+        currentQ++;
+        if (currentQ >= gameQuestions.length) {
+          endGame('win');
+        } else {
+          document.getElementById('nextBtn').classList.add('visible');
+          document.getElementById('walkBtn').style.display = 'none';
+        }
+      }, 1200);
+    } else {
+      stopBackground();
+      playSound(sndWrong);
+      setTimeout(() => endGame('lose'), 1800);
+    }
+  }, 600);
+}
+
+/* ── NEXT QUESTION ── */
+function nextQuestion() {
+  document.getElementById('nextBtn').classList.remove('visible');
+  document.getElementById('walkBtn').style.display = '';
+  renderQuestion();
+}
+
+/* ── WALK AWAY ── */
+function walkAway() {
+  if (answered) return;
+  endGame('walk');
+}
+
+/* ── END GAME ── */
+function endGame(result) {
+  stopBackground();
+  showScreen('endScreen');
+
+  const wonPrize  = currentQ > 0 ? PRIZES[currentQ - 1].amount : '$0';
+  const safePrize = (() => {
+    let safe = '$0';
+    for (const m of MILESTONES) if (currentQ > m) safe = PRIZES[m].amount;
+    return safe;
+  })();
+
+  if (result === 'win') {
+    document.getElementById('endTitle').textContent = 'Congratulations!';
+    document.getElementById('endPrize').textContent = PRIZES[gameQuestions.length - 1].amount;
+    document.getElementById('endMsg').textContent   = 'You answered every question correctly and won the top prize!';
+    playSound(sndWin);
+  } else if (result === 'walk') {
+    document.getElementById('endTitle').textContent = 'You Walked Away!';
+    document.getElementById('endPrize').textContent = wonPrize;
+    document.getElementById('endMsg').textContent   = 'Smart move. You leave with your winnings!';
+  } else {
+    document.getElementById('endTitle').textContent = 'Wrong Answer!';
+    document.getElementById('endPrize').textContent = safePrize;
+    document.getElementById('endMsg').textContent   = `You go home with ${safePrize}. Better luck next time!`;
+  }
+}
+
+/* ── LIFELINES ── */
+function use5050() {
+  if (lifelines['5050'] || answered) return;
+  lifelines['5050'] = true;
+  document.getElementById('ll5050').classList.add('used');
+
+  const correct = window._correctIndex;
+  const pool    = [0,1,2,3].filter(i => i !== correct && !removedIndices.includes(i));
+  shuffle(pool).slice(0, 2).forEach(i => {
+    removedIndices.push(i);
+    document.getElementById(`ans-${i}`).classList.add('hidden');
+  });
+}
+
+function usePhone() {
+  if (lifelines.phone || answered) return;
+  lifelines.phone = true;
+  document.getElementById('llPhone').classList.add('used');
+
+  const correct = window._correctIndex;
+  const letters = ['A','B','C','D'];
+  const names   = ['Alex','Jordan','Taylor','Morgan','Casey'];
+  const name    = names[Math.floor(Math.random() * names.length)];
+
+  const picksRight = Math.random() < 0.75;
+  let picked;
+  if (picksRight) {
+    picked = correct;
+  } else {
+    const others = [0,1,2,3].filter(i => i !== correct && !removedIndices.includes(i));
+    picked = others[Math.floor(Math.random() * others.length)];
+  }
+
+  const conf = Math.floor(55 + Math.random() * 40);
+  const msg  = picksRight
+    ? `"I'm pretty sure it's <strong>${letters[picked]}</strong>. About ${conf}% confident!"`
+    : `"Hmm, tough one… I think <strong>${letters[picked]}</strong>? But I'm honestly not sure."`;
+
+  document.getElementById('phoneText').innerHTML =
+    `<strong>${name}</strong> says:<br><br>${msg}`;
+  document.getElementById('phoneOverlay').classList.add('show');
+}
+
+function useAudience() {
+  if (lifelines.audience || answered) return;
+  lifelines.audience = true;
+  document.getElementById('llAudience').classList.add('used');
+
+  const correct = window._correctIndex;
+  const visible = [0,1,2,3].filter(i => !removedIndices.includes(i));
+  const pcts    = {};
+
+  const correctPct = Math.floor(42 + Math.random() * 44);
+  pcts[correct] = correctPct;
+  let rem = 100 - correctPct;
+
+  const others = visible.filter(i => i !== correct);
+  others.forEach((idx, j) => {
+    if (j === others.length - 1) { pcts[idx] = rem; }
+    else { const s = Math.floor(Math.random() * rem * 0.6); pcts[idx] = s; rem -= s; }
+  });
+  removedIndices.forEach(i => pcts[i] = 0);
+
+  const letters = ['A','B','C','D'];
+  const barsEl  = document.getElementById('audienceBars');
+  barsEl.innerHTML = '';
+
+  [0,1,2,3].forEach(i => {
+    if (removedIndices.includes(i)) return;
+    const pct  = pcts[i] || 0;
+    const wrap = document.createElement('div');
+    wrap.className = 'bar-wrap';
+    wrap.innerHTML = `
+      <div class="bar-pct">${pct}%</div>
+      <div class="bar" style="height:0" data-h="${Math.round(pct * 1.3)}"></div>
+      <div class="bar-lbl">${letters[i]}</div>
+    `;
+    barsEl.appendChild(wrap);
+  });
+
+  document.getElementById('audienceOverlay').classList.add('show');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    barsEl.querySelectorAll('.bar').forEach(b => {
+      b.style.height = b.dataset.h + 'px';
+    });
+  }));
+}
+
+/* ── RESET ── */
+function resetGame() {
+  stopBackground();
+  showScreen('startScreen');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Which annual music festival is one of Malta's biggest free outdoor events?
+Isle of MTV Malta
+Earth Garden
+SummerDaze
+Glitch Festival
+
+Which village is home to Popeye Village?
+Mellieħa
+Marsaxlokk
+Rabat
+Sliema
+
+Which Maltese singer represented Malta at the Eurovision Song Contest in 2021?
+Destiny
+Chiara
+Ira Losco
+Emma Muscat
+
+What is the name of Malta's national football stadium?
+Ta' Qali National Stadium
+Victor Tedesco Stadium
+Centenary Stadium
+Hibernians Stadium
+
+Which TV series was filmed extensively at Fort Ricasoli in Malta?
+Game of Thrones
+Breaking Bad
+Peaky Blinders
+The Crown
+
+Which Maltese island is famous for the Blue Lagoon?
+Comino
+Gozo
+Filfla
+St. Paul's Island
+
+What is the name of Malta's largest shopping centre?
+The Point Shopping Mall
+Bay Street
+Plaza Shopping Centre
+Pama Shopping Village
+
+Which Maltese singer represented Malta at Eurovision with the song "Walk on Water"?
+Ira Losco
+Destiny
+Michela
+Chiara
+
+Which annual festival celebrates electronic music at Gianpula Village?
+Glitch Festival
+Earth Garden
+Isle of MTV Malta
+Lost & Found Festival
+
+Which football club has won the most Maltese Premier League titles?
+Sliema Wanderers
+Floriana
+Hibernians
+Valletta
+
+Which Maltese town is famous for its colourful traditional fishing boats?
+Marsaxlokk
+Mellieħa
+Birgu
+St. Julian's
+
+Which popular Maltese soft drink is flavoured with bitter oranges and herbs?
+Kinnie
+Twistees
+Cisk
+Kinni
+
+Which beer is considered Malta's national lager?
+Cisk
+Heineken
+Carlsberg
+Guinness
+
+Which Hollywood film starring Robin Williams was filmed at Popeye Village?
+Popeye
+Hook
+Jumanji
+Mrs. Doubtfire
+
+Which Maltese artist won the Junior Eurovision Song Contest in 2015?
+Destiny
+Gaia Cauchi
+Michela Pace
+Amber Bond

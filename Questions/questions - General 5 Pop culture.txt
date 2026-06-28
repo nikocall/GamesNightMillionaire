@@ -1,0 +1,110 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Which actor played the Joker in The Dark Knight?
+Heath Ledger
+Joaquin Phoenix
+Jared Leto
+Jack Nicholson
+
+Which artist released the album "1989"?
+Taylor Swift
+Olivia Rodrigo
+Ariana Grande
+Dua Lipa
+
+What is the name of the fictional African country in Black Panther?
+Wakanda
+Zamunda
+Genovia
+Latveria
+
+Which Netflix series features a deadly competition for a cash prize?
+Squid Game
+Alice in Borderland
+Money Heist
+The 100
+
+Which company created the PlayStation console?
+Sony
+Microsoft
+Nintendo
+Sega
+
+Who is the main character in The Legend of Zelda series?
+Link
+Zelda
+Ganondorf
+Impa
+
+Which actor played Wolverine in the X-Men films?
+Hugh Jackman
+Ryan Reynolds
+Chris Pratt
+Ben Affleck
+
+Which singer released the hit song "Flowers"?
+Miley Cyrus
+Taylor Swift
+Dua Lipa
+Adele
+
+In Star Wars, what is Baby Yoda's actual name?
+Grogu
+Yaddle
+Ezra
+Babu
+
+Which TV show follows the Shelby family in Birmingham?
+Peaky Blinders
+Sons of Anarchy
+Boardwalk Empire
+The Gentlemen
+
+Which animated film features the characters Shrek and Donkey?
+Shrek
+Madagascar
+Ice Age
+Kung Fu Panda
+
+Which game studio developed Grand Theft Auto V?
+Rockstar Games
+Ubisoft
+Electronic Arts
+Activision
+
+Which actor played Deadpool in the Marvel films?
+Ryan Reynolds
+Chris Evans
+Chris Pratt
+Tom Holland
+
+What is the name of Wednesday Addams' pet hand?
+Thing
+Fingers
+Handy
+Five
+
+Which artist is known for the songs "Bad Guy" and "Birds of a Feather"?
+Billie Eilish
+Olivia Rodrigo
+Lorde
+Sabrina Carpenter
+
