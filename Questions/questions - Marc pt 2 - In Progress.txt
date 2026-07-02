@@ -1,0 +1,115 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Who would be a great parent?
+Paris
+London
+Berlin
+Madrid
+
+Who has the craziest lore?
+6
+4
+8
+5
+
+Who made their family the most proud?
+H2O
+CO2
+NaCl
+O2
+
+Who has the worst taste in partners?
+Leonardo da Vinci
+Pablo Picasso
+Michelangelo
+Vincent van Gogh
+
+Who is most likely to mute the group chat for a week?
+Jupiter
+Saturn
+Neptune
+Earth
+
+Who would embarrass you the most in public?
+1912
+1905
+1920
+1898
+
+Who is most likely to send a 3-minute voice note instead of a text?
+12
+14
+11
+16
+
+Who is definitely planning your next holiday?
+William Shakespeare
+Charles Dickens
+Jane Austen
+Mark Twain
+
+Who is most likely to make the first move?
+Cheetah
+Lion
+Greyhound
+Horse
+
+Who is the master of dad jokes?
+206
+212
+198
+220
+
+Who always asks for advice but never takes it?
+Tokyo
+Beijing
+Seoul
+Bangkok
+
+Who is most likely to end up in jail?
+Hydrogen
+Helium
+Lithium
+Oxygen
+
+Who has the highest screen time?
+Nile
+Amazon
+Yangtze
+Mississippi
+
+Who would absolutely pass a sarcastic comment?
+India
+China
+Persia
+Greece
+
+Who is most likely to retire young?
+Diamond
+Quartz
+Titanium
+Obsidian
+
+Who is most likely to be the favourite sibling?
+Diamond
+Quartz
+Titanium
+Obsidian

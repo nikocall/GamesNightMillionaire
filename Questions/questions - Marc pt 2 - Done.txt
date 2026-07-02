@@ -1,0 +1,115 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Who would be a great parent?
+Bernard
+Clare
+Marc
+Daniele
+
+Who has the craziest lore?
+Nikolai
+Matthew
+Sean
+Marc
+
+Who made their family the most proud?
+Bernard
+Marc
+Daniele
+Clare
+
+Who has the worst taste in partners?
+Nikolai
+Daniele
+Marc
+Sean
+
+Who is most likely to mute the group chat for a week?
+Sean
+Nikolai
+Daniele
+Bernard
+
+Who would embarrass you the most in public?
+Matthew
+Marc
+Daniele
+Nikolai
+
+Who is most likely to send a 3-minute voice note instead of a text?
+Matt
+Marc
+Nik
+Sean
+
+Who is definitely planning your next holiday?
+Marc
+Graziella
+Sean
+Bernard
+
+Who is most likely to make the first move?
+Nikolai
+Matthew
+Graziella
+Bernard
+
+Who is the master of dad jokes?
+Nikolai
+Bernard
+Sean
+Matthew
+
+Who always asks for advice but never takes it?
+Matt
+Nik
+Dan
+Clare
+
+Who is most likely to end up in jail?
+Matthew
+Sean
+Marc
+Nikolai
+
+Who has the highest screen time?
+Daniele
+Bernard
+Matthew
+Nikolai
+
+Who would absolutely pass a sarcastic comment?
+Matthew
+Nikolai
+Marc
+Bernard
+
+Who is most likely to retire young?
+Bernard
+Marc
+Graziella
+Clare
+
+Who is most likely to be the favourite sibling?
+Clare
+Marc
+Nik
+Bernard

@@ -1,0 +1,109 @@
+# ============================================================
+#  WHO WANTS TO BE A MILLIONAIRE – Question Pack
+# ============================================================
+#
+#  HOW TO ADD / EDIT QUESTIONS:
+#
+#  Each question is a block of exactly 5 lines:
+#    Line 1 : The question
+#    Line 2 : The CORRECT answer
+#    Line 3 : Wrong answer
+#    Line 4 : Wrong answer
+#    Line 5 : Wrong answer
+#
+#  Separate each question block with a blank line.
+#  Lines starting with # are comments and are ignored.
+#  The 4 answers will be shuffled into a random order in-game.
+#  Up to 15 questions will be used per game (picked at random).
+#
+# ============================================================
+
+Who dies first in a horror movie?
+Daniele
+Matthew
+Graziella
+Nikolai
+
+Who has the most rizz?
+Matthew
+Nik
+Marc
+Sean
+
+Who is most likely to be blunt to someone’s face?
+Marc
+Matthew
+Bernard
+Graziella
+
+Who’s most likely to get arrested?
+Matthew
+Daniele
+Sean
+Nikolai
+
+Who’s most likely to help out in a tight spot?
+Nik
+Marc
+Bernard
+Graziella
+
+Who’s most likely to be on the Autism spectrum?
+Daniele
+Bernard
+Marc
+Nikolai
+
+Who is most likely to start arguing with a GPS?
+Matt
+Nik
+Dan
+Marc
+
+Who’s always late?
+Matthew
+why is this even a question?
+Bernard
+Sean
+
+Who is most likely to disappear from the chat for months?
+Bernard
+Sean
+Clare
+Daniele
+
+Who would rather stay in and watch Netflix on a Friday night? 
+Clare
+Marc
+Graziella
+Bernard
+
+Who is most likely to say something stupid on a first date?
+Daniele
+Matthew
+Nikolai
+Graziella
+
+Who’s the funniest?
+Matthew
+Nikolai
+Sean
+Marc
+
+Who’s most likely to be admitted into a psych ward?
+Matthew
+Marc
+Sean
+Daniele
+
+Who would you trust with your children?
+Clare
+Graziella
+Bernard
+Daniele
+
+Who would you NOT trust with your children?
+Matthew
+Daniele
+Graziella
+Nikolai
